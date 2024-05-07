@@ -1,0 +1,32 @@
+{
+  "name": "url_shortner",
+  "version": "1.0.0",
+  "description": "This project contains APIs for url shortening",
+  "main": "server.ts",
+  "repository": "https://github.com/mosidrum/url_shortner.git",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "npx tsc && node ./dist/server.js",
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mosidrum <mosiokanga@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.4",
+    "nanoid": "^5.0.7"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.12.10",
+    "nodemon": "^3.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
