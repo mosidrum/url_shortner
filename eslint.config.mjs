@@ -1,29 +1,29 @@
 export default [
   {
-    "env": {
-      "browser": true,
-      "es2021": true,
+    env: {
+      browser: true,
+      es2021: true,
       "jest/globals": true,
-      "jest": true
+      jest: true,
     },
-    "extends": [
+    extends: [
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
       "airbnb-base",
       "airbnb-typescript/base",
       "plugin:sonarjs/recommended",
       "plugin:unicorn/recommended",
-      "prettier"
+      "prettier",
     ],
-    "overrides": [],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-      "ecmaVersion": "latest",
-      "sourceType": "module",
-      "project": "./tsconfig.json"
+    overrides: [],
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
+      project: "./tsconfig.json",
     },
-    "plugins": ["@typescript-eslint", "jest", "prettier", "unicorn", "sonarjs"],
-    "rules": {
+    plugins: ["@typescript-eslint", "jest", "prettier", "unicorn", "sonarjs"],
+    rules: {
       "unicorn/filename-case": "off",
       "import/prefer-default-export": "off",
       "unicorn/no-null": "off",
@@ -37,7 +37,7 @@ export default [
       "no-underscore-dangle": "off",
       "import/no-cycle": "off",
       "unicorn/prefer-export-from": "off",
-      "spaced-comment": "off"
-    }
-  }
+      "spaced-comment": "off",
+    },
+  },
 ];
