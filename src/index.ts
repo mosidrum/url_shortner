@@ -4,6 +4,9 @@ dotenv.config();
 
 const port = process.env.PORT || 8000;
 
+const serverPoint = 'unused';
+console.log("this is an eslint warning");
+
 const app = express();
 
 app.get('/', (req, res) => {
