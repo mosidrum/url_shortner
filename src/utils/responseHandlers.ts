@@ -5,6 +5,7 @@ import { customError } from "../error";
 
 export const sendResponse = <T>(res: Response, statusCode: number, data: T) => {
   return res.status(statusCode).json({
+    message: "Data retrieved successfully",
     data,
   });
 };
@@ -22,11 +23,10 @@ export const handleError = (
     });
   }
 
-  const statusCode = STATUS_CODES.SERVER_ERROR;
   logger.error(`${error.message} - ${req.path}`);
 
   next({
-    statusCode,
+    statusCode: STATUS_CODES.SERVER_ERROR,
     message: "An unexpected error occurred",
     path: req.path,
   });

@@ -13,9 +13,9 @@ export const validatePostRoute = [
   body("customName")
     .optional()
     .isLength({ min: 5 })
-    .withMessage("custom name must be at least 5 characters long")
-    .isAlpha()
-    .withMessage("custom name must contain only alphabetic characters")
+    .withMessage("Custom name must be more than 5 characters long")
+    .matches(/^[A-Za-z\s]+$/)
+    .withMessage("Custom name should be alphabets")
     .custom(async (customName) => {
       if (customName) {
         const customNameExist = await databaseModel.findOne({ customName });

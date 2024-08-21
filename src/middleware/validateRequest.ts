@@ -14,7 +14,7 @@ export const validateRequest = (
     const formattedErrors = errors.array().map((error) => {
       const validationError = error as FieldValidationError;
       return {
-        msg: validationError.msg,
+        message: validationError.msg,
         path: validationError.path,
       };
     });

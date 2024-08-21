@@ -1,12 +1,11 @@
-import express, { NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 import { databaseModel } from "../model";
 import { logger } from "../services";
-import { generateCustomName, STATUS_CODES } from "../utils";
-import { handleError, sendResponse } from "../utils";
+import { handleError, sendResponse, STATUS_CODES } from "../utils";
 
 export const postUrl = async (
-  req: express.Request,
-  res: express.Response,
+  req: Request,
+  res: Response,
   next: NextFunction,
 ) => {
   try {
@@ -14,13 +13,10 @@ export const postUrl = async (
 
     const shortUrl = await databaseModel.create({
       originalUrl,
-      shortUrl: customName || generateCustomName(),
+      customName: customName || "",
     });
 
-    return sendResponse(res, STATUS_CODES.CREATED, {
-      message: "Created successful",
-      shortUrl,
-    });
+    return sendResponse(res, STATUS_CODES.CREATED, shortUrl);
   } catch (error) {
     logger.error(error);
     return handleError(error as Error, req, res, next);

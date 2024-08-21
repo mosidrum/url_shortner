@@ -1,7 +1,6 @@
-import { Request, Response, NextFunction } from "express";
-import { STATUS_CODES } from "../utils";
+import { NextFunction, Request, Response } from "express";
+import { handleError, sendResponse, STATUS_CODES } from "../utils";
 import { databaseModel } from "../model";
-import { handleError, sendResponse } from "../utils/responseHandlers";
 import { customError } from "../error";
 
 export const getOneUrl = async (
@@ -13,7 +12,7 @@ export const getOneUrl = async (
     const { id } = req.params;
     const url = await databaseModel.findById({ _id: id });
     if (!url) {
-      return new customError("Url not found", STATUS_CODES.NOT_FOUND);
+      throw new customError("Url not found", STATUS_CODES.NOT_FOUND);
     }
     return sendResponse(res, STATUS_CODES.OK, url);
   } catch (error) {
