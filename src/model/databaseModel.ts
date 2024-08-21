@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { nanoid } from "nanoid";
+import { generateCustomName } from "../utils";
 
 const shortenedURLSchema = new mongoose.Schema(
   {
@@ -12,7 +12,7 @@ const shortenedURLSchema = new mongoose.Schema(
       type: String,
       required: false,
       unique: true,
-      default: () => nanoid().substring(0, 10),
+      default: () => generateCustomName(),
     },
     originalUrl: {
       type: String,

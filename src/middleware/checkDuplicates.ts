@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { databaseModel } from "../model";
 import { STATUS_CODES } from "../utils";
+import { customError } from "../error";
 
 export const checkDuplicates = async (
   req: Request,
@@ -10,22 +11,12 @@ export const checkDuplicates = async (
   try {
     const { originalUrl, customName } = req.body;
 
-    if (customName) {
-      const checkName = await databaseModel.findOne({ shortUrl: customName });
-      if (checkName) {
-        return res
-          .status(STATUS_CODES.CONFLICT)
-          .json({ message: "Duplicate custom name, Try again!" });
-      }
-    }
+    const duplicate = await databaseModel.findOne({
+      $or: [{ shortUrl: customName }, { originalUrl: originalUrl }],
+    });
 
-    if (originalUrl) {
-      const checkUrl = await databaseModel.findOne({ originalUrl });
-      if (checkUrl) {
-        return res
-          .status(STATUS_CODES.CONFLICT)
-          .json({ message: "Duplicate URL, Try again!" });
-      }
+    if (duplicate) {
+      return new customError("Duplicates, Try again!", STATUS_CODES.CONFLICT);
     }
 
     next();
