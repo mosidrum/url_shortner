@@ -16,7 +16,11 @@ export const postUrl = async (
       customName: customName || "",
     });
 
-    return sendResponse(res, STATUS_CODES.CREATED, shortUrl);
+    return sendResponse({
+      res,
+      statusCode: STATUS_CODES.CREATED,
+      data: shortUrl,
+    });
   } catch (error) {
     logger.error(error);
     return handleError(error as Error, req, res, next);
