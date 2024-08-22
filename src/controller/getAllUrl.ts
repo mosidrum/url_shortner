@@ -11,9 +11,9 @@ export const getAllUrl = async (
   try {
     const allUrls = await databaseModel.find();
     if (allUrls.length === 0) {
-      return sendResponse(res, STATUS_CODES.OK, []);
+      return sendResponse({ res, statusCode: STATUS_CODES.OK, data: [] });
     }
-    return sendResponse(res, STATUS_CODES.OK, allUrls);
+    return sendResponse({ res, statusCode: STATUS_CODES.OK, data: allUrls });
   } catch (error) {
     return handleError(error as Error, req, res, next);
   }
