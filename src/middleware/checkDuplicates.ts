@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { databaseModel } from "../model";
-import { STATUS_CODES } from "../utils";
-import { customError } from "../error";
+import { sendResponse, STATUS_CODES } from "../utils";
 
 export const checkDuplicates = async (
   req: Request,
@@ -16,7 +15,11 @@ export const checkDuplicates = async (
     });
 
     if (duplicate) {
-      return new customError("Duplicates, Try again!", STATUS_CODES.CONFLICT);
+      return sendResponse({
+        res,
+        statusCode: STATUS_CODES.CONFLICT,
+        message: "Duplicates, Try again",
+      });
     }
 
     next();
