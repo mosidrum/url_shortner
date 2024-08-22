@@ -10,13 +10,7 @@ export const getOneUrl = async (
   try {
     const { id } = req.params;
     const url = await databaseModel.findById({ _id: id });
-    if (!url) {
-      return sendResponse({
-        res,
-        statusCode: STATUS_CODES.NOT_FOUND,
-        message: "Does not exist",
-      });
-    }
+
     return sendResponse({
       res,
       statusCode: STATUS_CODES.OK,

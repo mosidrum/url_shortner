@@ -1,7 +1,7 @@
 import { body, param } from "express-validator";
 import { databaseModel } from "../model";
 
-export const validatePostRoute = [
+export const validatePassedData = [
   body("originalUrl")
     .isURL()
     .notEmpty()
@@ -27,7 +27,7 @@ export const validatePostRoute = [
     }),
 ];
 
-export const validateGetByIdRoute = [
+export const validatePasssedId = [
   param("id")
     .exists()
     .withMessage("id not provided")
