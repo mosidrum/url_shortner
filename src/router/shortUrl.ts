@@ -7,29 +7,24 @@ import {
   deleteOne,
 } from "../controller";
 import {
-  getUrlValidationRule,
+  idParamRule,
   createUrlValidationRule,
   validateRequest,
+  updateOneValidationRule,
 } from "../middleware";
 
 export const router = express.Router();
 
 router.post("/urls", createUrlValidationRule, validateRequest, postUrl);
 
-router.get("/urls/:id", getUrlValidationRule, validateRequest, getOneUrl);
+router.get("/urls/:id", idParamRule, validateRequest, getOneUrl);
 
 router.get("/urls", validateRequest, getAllUrl);
 router.put(
   "/urls/:id",
-  validatePasssedId,
-  checkUrlId,
+  idParamRule,
+  updateOneValidationRule,
   validateRequest,
   updateOne,
 );
-router.delete(
-  "/urls/:id",
-  validatePasssedId,
-  checkUrlId,
-  validateRequest,
-  deleteOne,
-);
+router.delete("/urls/:id", idParamRule, validateRequest, deleteOne);

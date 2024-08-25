@@ -1,6 +1,11 @@
 import { Request, Response, NextFunction } from "express";
 import { logger } from "../services";
-import { STATUS_CODES, handleError, sendResponse } from "../utils";
+import {
+  STATUS_CODES,
+  handleError,
+  reformatCustomName,
+  sendResponse,
+} from "../utils";
 import { databaseModel } from "../model";
 
 export const updateOne = async (
@@ -11,17 +16,32 @@ export const updateOne = async (
   try {
     const { id } = req.params;
     const { originalUrl, customName } = req.body;
-    const urlToEdited = await databaseModel.findById({ _id: id });
 
-    urlToEdited!.originalUrl = originalUrl ?? originalUrl;
-    urlToEdited!.customName = customName ?? customName;
+    const urlToEdit = await databaseModel.findById(id);
 
-    const updatedUrl = await urlToEdited!.save();
+    if (!urlToEdit) {
+      return sendResponse({
+        res,
+        statusCode: STATUS_CODES.NOT_FOUND,
+        message: "URL not found",
+      });
+    }
+
+    if (originalUrl) {
+      urlToEdit.originalUrl = originalUrl;
+    }
+
+    if (customName) {
+      urlToEdit.customName = customName;
+      urlToEdit.shortUrl = `${process.env.BASE_URL}/${reformatCustomName(customName)}`;
+    }
+
+    const updatedUrl = await urlToEdit.save();
 
     return sendResponse({
       res,
       statusCode: STATUS_CODES.OK,
-      message: "Updated succesfully",
+      message: "Updated successfully",
       data: updatedUrl,
     });
   } catch (error) {

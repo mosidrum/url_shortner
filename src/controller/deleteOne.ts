@@ -11,10 +11,19 @@ export const deleteOne = async (
   try {
     const { id } = req.params;
     const urlToDelete = await databaseModel.findByIdAndDelete(id);
+
+    if (!urlToDelete) {
+      return sendResponse({
+        res,
+        statusCode: STATUS_CODES.NOT_FOUND,
+        message: "URL not found",
+      });
+    }
+
     return sendResponse({
       res,
       statusCode: STATUS_CODES.OK,
-      message: "Deleted succesfully",
+      message: "Deleted successfully",
       data: urlToDelete,
     });
   } catch (error) {
