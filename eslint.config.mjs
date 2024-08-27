@@ -6,7 +6,7 @@ import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 
 export default [
   {
-    ignores: ["dist/", "eslint.config.mjs"],
+    ignores: ["build/", "eslint.config.mjs"],
   },
   {
     files: ["src/**/*.{ts,js,tsx,jsx}", "test/**/*.{ts,js,tsx,jsx}"],
@@ -26,9 +26,6 @@ export default [
       "import/extensions": "off",
       "comma-dangle": "off",
       "@typescript-eslint/comma-dangle": "off",
-      "react/jsx-filename-extension": "off",
-      indent: "off",
-      "@typescript-eslint/indent": "off",
       "unicorn/no-anonymous-default-export": "off",
       "unicorn/prefer-string-replace-all": "off",
     },

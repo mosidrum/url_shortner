@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { generateCustomName } from "../utils";
 
 const shortenedURLSchema = new mongoose.Schema(
   {
@@ -12,7 +11,6 @@ const shortenedURLSchema = new mongoose.Schema(
       type: String,
       required: false,
       unique: true,
-      default: () => generateCustomName(),
     },
     originalUrl: {
       type: String,

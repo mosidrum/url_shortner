@@ -6,7 +6,7 @@ type SendResponseType<T> = {
   res: Response;
   statusCode: number;
   data?: T;
-  message?: string;
+  message: string;
 };
 
 export const sendResponse = <T>({
@@ -16,7 +16,7 @@ export const sendResponse = <T>({
   data,
 }: SendResponseType<T>) => {
   return res.status(statusCode).json({
-    message: message ?? "Created successfully",
+    message,
     data,
   });
 };

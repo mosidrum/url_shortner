@@ -10,10 +10,12 @@ export const getAllUrl = async (
 ) => {
   try {
     const allUrls = await databaseModel.find();
-    if (allUrls.length === 0) {
-      return sendResponse({ res, statusCode: STATUS_CODES.OK, data: [] });
-    }
-    return sendResponse({ res, statusCode: STATUS_CODES.OK, data: allUrls });
+    return sendResponse({
+      res,
+      statusCode: STATUS_CODES.OK,
+      data: allUrls,
+      message: "Urls fetched successfully",
+    });
   } catch (error) {
     return handleError(error as Error, req, res, next);
   }
