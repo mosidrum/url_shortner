@@ -1,9 +1,10 @@
 import { createLogger, format, transports } from "winston";
+import { TransformableInfo } from "logform";
 
 const { combine, timestamp, printf } = format;
 
 const defaultFormatter = printf(
-  ({ level, message, timestamp }: never) =>
+  ({ level, message, timestamp }: TransformableInfo) =>
     `${timestamp} [${level}] : ${message}`,
 );
 
@@ -13,7 +14,7 @@ const commonFormat = combine(
 );
 
 export const logger = createLogger({
-  level: process.env.example.LOG_LEVEL || "info",
+  level: process.env.LOG_LEVEL || "info",
   format: commonFormat,
   transports: [
     new transports.Console(),

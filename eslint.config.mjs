@@ -6,7 +6,7 @@ import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 
 export default [
   {
-    ignores: ["dist/", "eslint.config.mjs"],
+    ignores: ["build/", "eslint.config.mjs"],
   },
   {
     files: ["src/**/*.{ts,js,tsx,jsx}", "test/**/*.{ts,js,tsx,jsx}"],
@@ -15,14 +15,19 @@ export default [
       "import/prefer-default-export": "off",
       "unicorn/no-null": "off",
       "unicorn/prevent-abbreviations": "off",
-      "no-console": "warn",
+      "no-console": "error",
       "no-restricted-syntax": "off",
+      "no-duplicate-imports": "error",
       "import/no-extraneous-dependencies": "off",
       "@typescript-eslint/lines-between-class-members": "off",
       "@typescript-eslint/no-namespace": "off",
       "no-underscore-dangle": "off",
-      "unicorn/prefer-export-from": "off",
       "spaced-comment": "off",
+      "import/extensions": "off",
+      "comma-dangle": "off",
+      "@typescript-eslint/comma-dangle": "off",
+      "unicorn/no-anonymous-default-export": "off",
+      "unicorn/prefer-string-replace-all": "off",
     },
   },
   {
