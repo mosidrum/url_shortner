@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to url shorter api");
+  res.send("Welcome to url shorter api, made by Isaac Ayodele");
 });
 
 app.use("/api/v1", router);
