@@ -1,6 +1,6 @@
 FROM node:alpine
 
-WORKDIR /usr/src/shortit_app
+WORKDIR /usr/src
 
 COPY package*.json .
 

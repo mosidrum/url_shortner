@@ -12,7 +12,7 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASSWORD}
     volumes:
-      - mongo_db:/data/db
+      - ./data:/data/db
 
   api:
     build:
@@ -25,9 +25,10 @@ services:
     expose:
       - ${PORT}
     ports:
-      - 4000:4000
+      - "8000:8000"
     volumes:
-      - .:/usr/src/shortit_app
+      - ./src:/app/src
+      - ./nodemon.json:/app/nodemon.json
 
 volumes:
   mongo_db:
