@@ -8,6 +8,7 @@ import {
   sendResponse,
   STATUS_CODES,
 } from "../utils";
+import { BASE_URL } from "../utils/constants";
 
 export const postUrl = async (
   req: Request,
@@ -32,7 +33,7 @@ export const postUrl = async (
     const shortUrl = await databaseModel.create({
       originalUrl,
       customName,
-      shortUrl: `${process.env.BASE_URL}/${customName ? reformatCustomName(customName) : generateCustomName()}`,
+      shortUrl: `${BASE_URL}/${customName ? reformatCustomName(customName) : generateCustomName()}`,
     });
 
     return sendResponse({

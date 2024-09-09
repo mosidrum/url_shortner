@@ -12,13 +12,13 @@
     "build": "rimraf ./build && tsc",
     "start": "tsc && node ./build/index.js",
     "lint": "eslint .",
+    "test": "jest",
     "dev": "nodemon",
     "docker-start-server-logs": "docker-compose up -d && docker-compose logs -f api",
     "docker": "docker compose up",
     "docker:build": "docker compose build",
     "docker:dev": "docker compose up -d",
     "format": "npx prettier --write src",
-    "test": "echo \"Error: no test specified\" && exit 0",
     "prepare": "husky"
   },
   "dependencies": {
