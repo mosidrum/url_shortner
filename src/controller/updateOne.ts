@@ -7,6 +7,7 @@ import {
   sendResponse,
 } from "../utils";
 import { databaseModel } from "../model";
+import { BASE_URL } from "../utils/constants";
 
 export const updateOne = async (
   req: Request,
@@ -33,7 +34,7 @@ export const updateOne = async (
 
     if (customName) {
       urlToEdit.customName = customName;
-      urlToEdit.shortUrl = `${process.env.BASE_URL}/${reformatCustomName(customName)}`;
+      urlToEdit.shortUrl = `${BASE_URL}/${reformatCustomName(customName)}`;
     }
 
     const updatedUrl = await urlToEdit.save();
