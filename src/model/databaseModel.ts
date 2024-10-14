@@ -1,6 +1,14 @@
-import mongoose from "mongoose";
+import mongoose, { Document } from "mongoose";
 
-const shortenedURLSchema = new mongoose.Schema(
+export interface IShortenedURL extends Document {
+  customName?: string;
+  shortUrl?: string;
+  originalUrl: string;
+  userId: mongoose.Types.ObjectId;
+  createdAt: Date;
+}
+
+const shortenedURLSchema = new mongoose.Schema<IShortenedURL>(
   {
     customName: {
       type: String,
@@ -29,13 +37,23 @@ const shortenedURLSchema = new mongoose.Schema(
   },
   {
     toJSON: {
-      transform(_, ret) {
-        ret.id = ret._id;
+      virtuals: true,
+      versionKey: false,
+      transform(_, ret: Record<string, unknown>) {
+        ret.id = ret._id?.toString();
         delete ret._id;
-        delete ret.__v;
+        return ret;
       },
     },
   },
 );
 
-export const databaseModel = mongoose.model("shortUrl", shortenedURLSchema);
+// Add the virtual for id with proper typing
+shortenedURLSchema.virtual("id").get(function (this: IShortenedURL) {
+  return (this._id as mongoose.Types.ObjectId).toHexString();
+});
+
+export const databaseModel = mongoose.model<IShortenedURL>(
+  "shortUrl",
+  shortenedURLSchema,
+);
