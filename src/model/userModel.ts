@@ -1,26 +1,19 @@
 import mongoose from "mongoose";
 
-const shortenedURLSchema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
-    customName: {
+    firstName: {
       type: String,
-      unique: true,
-      sparse: true,
+      required: true,
     },
-    shortUrl: {
+    lastName: {
       type: String,
-      required: false,
-      unique: true,
+      required: true,
     },
-    originalUrl: {
+    email: {
       type: String,
       required: true,
       unique: true,
-    },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
     },
     createdAt: {
       type: Date,
@@ -38,4 +31,4 @@ const shortenedURLSchema = new mongoose.Schema(
   },
 );
 
-export const databaseModel = mongoose.model("shortUrl", shortenedURLSchema);
+export const userModel = mongoose.model("User", userSchema);
