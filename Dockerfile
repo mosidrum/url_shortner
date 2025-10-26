@@ -1,8 +1,9 @@
 FROM node:alpine
 
-WORKDIR /usr/src
+WORKDIR /app
 
 COPY package*.json .
+COPY nodemon.json .
 
 RUN npm ci
 

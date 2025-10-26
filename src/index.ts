@@ -8,12 +8,15 @@ dotenv.config();
 connectDB();
 
 const port = process.env.PORT || 8000;
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to url shorter api, made by Isaac Ayodele");
+  res.json({
+    message: "Welcome to this url shorter api, made by Isaac Ayodele",
+  });
 });
 
 app.use("/api/v1", router);
