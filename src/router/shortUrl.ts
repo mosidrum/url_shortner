@@ -5,6 +5,7 @@ import {
   postUrl,
   updateOne,
   deleteOne,
+  proxyToOriginal,
 } from "../controller";
 import {
   idParamRule,
@@ -17,9 +18,10 @@ export const router = express.Router();
 
 router.post("/urls", createUrlValidationRule, validateRequest, postUrl);
 
-router.get("/urls/:id", idParamRule, validateRequest, getOneUrl);
-
 router.get("/urls", validateRequest, getAllUrl);
+router.get("/urls/:id", idParamRule, validateRequest, getOneUrl);
+router.get("/urls/:short", proxyToOriginal);
+
 router.put(
   "/urls/:id",
   idParamRule,
