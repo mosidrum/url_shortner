@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Response, Request } from "express";
 import dotenv from "dotenv";
 import { logger } from "./services";
 import { connectDB } from "./config";
@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
+app.get("/", (_: Request, res: Response) => {
   res.json({
     message: "Welcome to this url shorter api, made by Isaac Ayodele",
   });
