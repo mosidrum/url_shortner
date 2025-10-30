@@ -10,7 +10,7 @@
   "private": false,
   "scripts": {
     "build": "rimraf ./build && tsc",
-    "start": "tsc && node ./build/index.js",
+    "start": "tsc && node ./build/src/index.js",
     "lint": "eslint .",
     "test": "jest",
     "dev": "nodemon",
