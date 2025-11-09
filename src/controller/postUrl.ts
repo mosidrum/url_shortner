@@ -19,7 +19,10 @@ export const postUrl = async (
     const { originalUrl, customName } = req.body;
 
     const duplicate = await databaseModel.findOne({
-      $or: [{ customName: customName }, { originalUrl: originalUrl }],
+      $or: [
+        ...(customName ? [{ customName }] : []),
+        ...(originalUrl ? [{ originalUrl }] : []),
+      ],
     });
 
     if (duplicate) {
