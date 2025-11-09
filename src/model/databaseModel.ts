@@ -4,7 +4,6 @@ export interface IShortenedURL extends Document {
   customName?: string;
   shortUrl?: string;
   originalUrl: string;
-  userId: mongoose.Types.ObjectId;
   createdAt: Date;
 }
 
@@ -25,11 +24,6 @@ const shortenedURLSchema = new mongoose.Schema<IShortenedURL>(
       required: true,
       unique: true,
     },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: true,
-    },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -48,7 +42,6 @@ const shortenedURLSchema = new mongoose.Schema<IShortenedURL>(
   },
 );
 
-// Add the virtual for id with proper typing
 shortenedURLSchema.virtual("id").get(function (this: IShortenedURL) {
   return (this._id as mongoose.Types.ObjectId).toHexString();
 });
