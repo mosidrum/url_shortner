@@ -9,7 +9,7 @@ export const getAllUrl = async (
   next: NextFunction,
 ) => {
   try {
-    const allUrls = await databaseModel.find();
+    const allUrls = await databaseModel.find().sort({ createdAt: -1 });
     return sendResponse({
       res,
       statusCode: STATUS_CODES.OK,
