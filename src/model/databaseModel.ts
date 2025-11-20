@@ -22,7 +22,6 @@ const shortenedURLSchema = new mongoose.Schema<IShortenedURL>(
     originalUrl: {
       type: String,
       required: true,
-      unique: true,
     },
     createdAt: {
       type: Date,
