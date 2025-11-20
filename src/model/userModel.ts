@@ -29,6 +29,7 @@ const userSchema = new Schema<IUser>(
   },
   {
     toJSON: {
+      //eslint-disable-next-line @typescript-eslint/no-explicit-any
       transform(_doc, ret: any) {
         ret.id = ret._id;
         delete ret._id;
