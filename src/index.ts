@@ -4,6 +4,7 @@ import { logger } from "./services";
 import { connectDB } from "./config";
 import { router } from "./router";
 import cors from "cors";
+import { redirectToOriginal } from "./controller";
 
 dotenv.config();
 connectDB();
@@ -38,6 +39,8 @@ app.get("/", (_: Request, res: Response) => {
 });
 
 app.use("/api/v1", router);
+
+app.get("/:code", redirectToOriginal);
 
 app.use((req: Request, res: Response) => {
   res.status(404).json({ message: "Invalid route" });
